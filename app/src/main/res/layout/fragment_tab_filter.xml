@@ -1,0 +1,131 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:rsb="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="com.example.nam_t.datingapp.tab_filter">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interested in:"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <CheckBox
+            android:id="@+id/filter_male"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Male"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"/>
+        <CheckBox
+            android:layout_marginLeft="20dp"
+            android:id="@+id/filter_female"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Female"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max distance:  "
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:id="@+id/filter_txt_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" km"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+    <SeekBar
+        android:id="@+id/filter_dist"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="1km"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="∞"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age:  "
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimary"/>
+    <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+        android:id="@+id/filter_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        rsb:absoluteMaxValue="100"
+        rsb:absoluteMinValue="16" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="16"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="100"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:text="Chat with a random person"
+        android:background="@drawable/button"/>
+</LinearLayout>

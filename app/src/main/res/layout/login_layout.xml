@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:text="Username: "
+                android:textSize="17.5sp"
+                android:textColor="@android:color/black" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:text="Password: "
+                android:textSize="17.5sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/login_username"
+                android:layout_marginTop="5dp"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:background="@drawable/text_box"/>
+            <EditText
+                android:id="@+id/login_password"
+                android:inputType="textPassword"
+                android:layout_marginTop="5dp"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:background="@drawable/text_box"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="@string/login"
+        android:textSize="17.5sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button"/>
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create new account"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Fullname: "
+                android:textColor="@android:color/black"
+                android:textSize="17.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Username: "
+                android:textColor="@android:color/black"
+                android:textSize="17.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Password: "
+                android:textColor="@android:color/black"
+                android:textSize="17.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Email: "
+                android:textColor="@android:color/black"
+                android:textSize="17.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Date of birth: "
+                android:textColor="@android:color/black"
+                android:textSize="17.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Sex: "
+                android:textColor="@android:color/black"
+                android:textSize="17.5sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/new_fullname"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/text_box" />
+
+            <EditText
+                android:id="@+id/new_username"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/text_box" />
+
+            <EditText
+                android:id="@+id/new_password"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/text_box" />
+
+            <EditText
+                android:id="@+id/new_email"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/text_box" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <Spinner
+                    android:id="@+id/dob_dd"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"></Spinner>
+
+                <Spinner
+                    android:id="@+id/dob_mm"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"></Spinner>
+
+                <Spinner
+                    android:id="@+id/dob_yy"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"></Spinner>
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/new_sex"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp">
+
+            </Spinner>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_new"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Create"
+        android:textSize="17.5sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button"/>
+</LinearLayout>
