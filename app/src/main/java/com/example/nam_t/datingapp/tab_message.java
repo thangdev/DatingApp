@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class tab_chatbox extends Fragment {
+public class tab_message extends Fragment {
 
 
-    public tab_chatbox() {
+    public tab_message() {
         // Required empty public constructor
     }
 

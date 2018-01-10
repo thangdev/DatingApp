@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class tab_filter extends Fragment {
+public class tab_userlist extends Fragment {
 
 
-    public tab_filter() {
+    public tab_userlist() {
         // Required empty public constructor
     }
 

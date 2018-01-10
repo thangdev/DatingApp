@@ -5,7 +5,7 @@
     xmlns:rsb="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.example.nam_t.datingapp.tab_filter">
+    tools:context="com.example.nam_t.datingapp.tab_userlist">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
