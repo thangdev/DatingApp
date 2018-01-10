@@ -3,4 +3,10 @@
     <color name="colorPrimary">#5872ff</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Khanh custom color-->
+    <color name="primaryDark">#292b3d</color>
+    <color name="grayLight">#fafafa</color>
+    <color name="startBlue">#345fed</color>
+    <color name="endBlue">#34cbed</color>
 </resources>

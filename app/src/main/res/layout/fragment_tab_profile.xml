@@ -24,7 +24,7 @@
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tran Dai Nam"
+            android:text="Nguyễn Quốc Khánh"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="30sp"/>
@@ -32,7 +32,7 @@
             android:id="@+id/profile_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21"
+            android:text="20"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="30sp"/>
