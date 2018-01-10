@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DatingApp.iml" filepath="$PROJECT_DIR$/DatingApp.iml" />
+      <module fileurl="file://C:\Users\bomng\AndroidStudioProjects\DatingApp\DatingApp.iml" filepath="C:\Users\bomng\AndroidStudioProjects\DatingApp\DatingApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
