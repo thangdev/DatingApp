@@ -6,78 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-    <TextView
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"/>
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:gravity="center_vertical"
-                android:text="Username: "
-                android:textSize="17.5sp"
-                android:textColor="@android:color/black" />
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:gravity="center_vertical"
-                android:text="Password: "
-                android:textSize="17.5sp"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="left"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/login_username"
-                android:layout_marginTop="5dp"
-                android:layout_width="250dp"
-                android:layout_height="35dp"
-                android:background="@drawable/text_box"/>
-            <EditText
-                android:id="@+id/login_password"
-                android:inputType="textPassword"
-                android:layout_marginTop="5dp"
-                android:layout_width="250dp"
-                android:layout_height="35dp"
-                android:background="@drawable/text_box"/>
-        </LinearLayout>
-
-    </LinearLayout>
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_marginTop="10dp"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="@string/login"
-        android:textSize="17.5sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@drawable/button"/>
     <TextView
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
@@ -109,12 +38,13 @@
                 android:textColor="@android:color/black"
                 android:textSize="17.5sp" />
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:text="Username: "
+                android:text="Email: "
                 android:textColor="@android:color/black"
                 android:textSize="17.5sp" />
 
@@ -132,15 +62,6 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:text="Email: "
-                android:textColor="@android:color/black"
-                android:textSize="17.5sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
                 android:text="Date of birth: "
                 android:textColor="@android:color/black"
                 android:textSize="17.5sp" />
@@ -150,7 +71,7 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:text="Sex: "
+                android:text="Gender: "
                 android:textColor="@android:color/black"
                 android:textSize="17.5sp" />
         </LinearLayout>
@@ -167,20 +88,7 @@
                 android:layout_width="250dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/text_box" />
-
-            <EditText
-                android:id="@+id/new_username"
-                android:layout_width="250dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/text_box" />
-
-            <EditText
-                android:id="@+id/new_password"
-                android:layout_width="250dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
                 android:background="@drawable/text_box" />
 
             <EditText
@@ -188,41 +96,67 @@
                 android:layout_width="250dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
+                android:background="@drawable/text_box" />
+
+            <EditText
+                android:id="@+id/new_password"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
                 android:background="@drawable/text_box" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="horizontal">
 
-                <Spinner
+                <EditText
                     android:id="@+id/dob_dd"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="35dp"
-                    android:layout_weight="1"></Spinner>
+                    android:hint="dd"
+                    android:paddingRight="5dp"
+                    android:textAlignment="textEnd"
+                    android:background="@drawable/text_box" />
 
-                <Spinner
+                <EditText
                     android:id="@+id/dob_mm"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="35dp"
-                    android:layout_weight="1"></Spinner>
+                    android:hint="mm"
+                    android:paddingRight="5dp"
+                    android:textAlignment="textEnd"
+                    android:background="@drawable/text_box" />
 
-                <Spinner
+                <EditText
                     android:id="@+id/dob_yy"
-                    android:layout_width="80dp"
+                    android:layout_width="60dp"
                     android:layout_height="35dp"
-                    android:layout_weight="1"></Spinner>
+                    android:hint="yyyy"
+                    android:paddingRight="5dp"
+                    android:textAlignment="textEnd"
+                    android:background="@drawable/text_box" />
             </LinearLayout>
 
-            <Spinner
-                android:id="@+id/new_sex"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp">
-
-            </Spinner>
+            <RadioGroup
+                android:layout_marginTop="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gender">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textSize="17.5sp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textSize="17.5sp"/>
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -233,7 +167,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:text="Create"
+        android:text="Sign up"
         android:textSize="17.5sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
