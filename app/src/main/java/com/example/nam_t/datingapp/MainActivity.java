@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
-                View rootView =inflater.inflate(R.layout.fragment_tab_profile,container,false);
+                View rootView =inflater.inflate(R.layout.current_user_profile,container,false);
                 return rootView;
             } else if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
                 View rootView =inflater.inflate(R.layout.fragment_tab_userlist,container,false);
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 View rootView =inflater.inflate(R.layout.fragment_tab_message,container,false);
                 return rootView;
             } else {
-                View rootView=inflater.inflate(R.layout.fragment_tab_profile,container,false);
+                View rootView=inflater.inflate(R.layout.current_user_profile,container,false);
                 return rootView;
             }
         }
