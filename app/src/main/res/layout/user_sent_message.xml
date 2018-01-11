@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="right">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0"
+        android:background="@drawable/rounded_corner"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textSize="12sp"
+        android:text="Nhìn vào hư không ngước vô định vào xa xăm
+Thở dài tiếc nuối biết bao ân hận với một người
+Nặng lời nhau đau vỡ trái tim, người tổn thương đi rồi
+Nhận ra phải sống xa anh chẳng dễ dàng, chẳng dễ dàng."
+        android:textColor="#000" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0"
+        android:src="@drawable/arrow_bg1" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="0"
+        android:src="@drawable/khanhdev" />
+
+</LinearLayout>
