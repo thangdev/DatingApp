@@ -27,7 +27,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/khanhdev"
-                android:id="@+id/imgProfile" />
+                android:id="@+id/imgUserImg" />
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
@@ -56,6 +56,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/user_dd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12"
@@ -70,6 +71,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/user_mm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="04"
@@ -84,6 +86,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/user_yy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1997"
@@ -97,6 +100,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/user_bio"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:text="Tôi là một Web Developer nhưng tôi lại đi dev Android"
@@ -106,12 +110,13 @@
         android:textStyle="italic"/>
 
     <Button
+        android:id="@+id/btn_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/gradientbackground"
         android:textColor="#fff"
-        android:text="Match"
+        android:text="Like"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

@@ -13,11 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -103,19 +102,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
-                View rootView =inflater.inflate(R.layout.current_user_profile,container,false);
-                return rootView;
-            } else if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
-                View rootView =inflater.inflate(R.layout.fragment_tab_userlist,container,false);
-                return rootView;
-            } else if(getArguments().getInt(ARG_SECTION_NUMBER)==3){
-                View rootView =inflater.inflate(R.layout.fragment_tab_message,container,false);
-                return rootView;
-            } else {
-                View rootView=inflater.inflate(R.layout.current_user_profile,container,false);
-                return rootView;
-            }
+            View rootView= inflater.inflate(R.layout.current_user_profile,container,false);
+            return rootView;
         }
     }
 
@@ -131,9 +119,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position){
+                case 0:
+                    tab_profile tab1=new tab_profile();
+                    return tab1;
+                case 1:
+                    tab_userlist tab2=new tab_userlist();
+                    return tab2;
+                case 2:
+                    tab_message tab3=new tab_message();
+                    return tab3;
+            }
+            return null;
         }
 
         @Override
