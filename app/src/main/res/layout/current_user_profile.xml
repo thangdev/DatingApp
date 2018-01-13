@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grayLight"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,13 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="@drawable/gradientbackground">
-            <!--<ImageView-->
-                <!--android:layout_gravity="center_horizontal"-->
-                <!--android:layout_marginTop="35dp"-->
-                <!--android:layout_width="100dp"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:src="@drawable/ic_person_black_48dp"-->
-                <!--android:id="@+id/imgProfile"/>-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
@@ -61,7 +56,8 @@
                         android:text="12"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="@color/startBlue"/>
+                        android:textColor="@color/startBlue"
+                        android:id="@+id/txtDayProfile"/>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -75,7 +71,8 @@
                         android:text="04"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="@color/startBlue"/>
+                        android:textColor="@color/startBlue"
+                        android:id="@+id/txtMonthProfile"/>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -89,7 +86,8 @@
                         android:text="1997"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="@color/startBlue"/>
+                        android:textColor="@color/startBlue"
+                        android:id="@+id/txtYearProfile"/>
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -103,7 +101,8 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        android:id="@+id/txtBioProfile"/>
     
     <Button
         android:layout_width="wrap_content"
@@ -112,7 +111,8 @@
         android:background="@drawable/gradientbackground"
         android:textColor="#fff"
         android:text="Save"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnSave"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +120,7 @@
         android:background="@drawable/gradientbackground"
         android:textColor="#fff"
         android:text="Log out"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnLogout"/>
 
 </LinearLayout>
