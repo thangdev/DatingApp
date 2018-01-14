@@ -5,30 +5,37 @@ package com.example.nam_t.datingapp;
  */
 
 public class user_object {
+    private String userID;
     private String user_name;
     private int user_age;
-    private String user_pic;
-    public user_object (String user_name,int user_age,String user_pic){
+    private String user_ProfileImgURL;
+    public user_object (String userID,String user_name,int user_age,String user_ProfileImgURL){
+        this.userID=userID;
         this.user_name=user_name;
         this.user_age=user_age;
-        this.user_pic=user_pic;
+        this.user_ProfileImgURL=user_ProfileImgURL;
     }
+    public String getUserID(){ return userID;}
+    public void setUserID(String userID){this.userID=userID;}
+
     public String getUser_name(){
         return user_name;
     }
     public void setUser_name(String user_name){
         this.user_name=user_name;
     }
+
     public int getUser_age(){
         return user_age;
     }
     public void setUser_age(int user_age){
         this.user_age=user_age;
     }
-    public String getUser_pic(){
-        return user_pic;
+
+    public String getUser_ProfileImgURL(){
+        return user_ProfileImgURL;
     }
-    public void setUser_pic(String user_pic){
-        this.user_pic=user_pic;
+    public void setUser_ProfileImgURL(String user_ProfileImgURL){
+        this.user_ProfileImgURL=user_ProfileImgURL;
     }
 }
