@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mRegister.setOnClickListener(new View.OnClickListener() {
             public boolean checkValidation(){
-                if(mName.getText().length()<5){
+                if(mName.getText().length()<5&&mName.getText().length()<30){
                     Toast.makeText(RegisterActivity.this,"Invalid name",Toast.LENGTH_SHORT).show();
                     return false;
                 }
