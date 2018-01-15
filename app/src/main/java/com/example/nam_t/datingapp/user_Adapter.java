@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
 public class user_Adapter extends RecyclerView.Adapter<user_ViewHolder> {
     private List<user_object> user_list;
     private Context context;
-    public user_Adapter(List<user_object> user_list,Context context){
+    public user_Adapter(List<user_object> user_list, Context context){
         this.user_list=user_list;
         this.context=context;
     }
@@ -31,8 +33,8 @@ public class user_Adapter extends RecyclerView.Adapter<user_ViewHolder> {
     public void onBindViewHolder(user_ViewHolder holder,int position){
         holder.selectedID=user_list.get(position).getUserID();
         holder.mName.setText(user_list.get(position).getUser_name());
-        if(!user_list.get(position).getUser_ProfileImgURL().equals("default")){
-        }
+        holder.mAge.setText("Age: "+ user_list.get(position).getUser_age());
+        Picasso.with(context).load(user_list.get(position).getUser_ProfileImgURL()).into(holder.mPic);
     }
     public int getItemCount(){return this.user_list.size();}
 }

@@ -3,26 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:padding="20dp">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_pic"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_person_black_48dp"/>
-
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tran van a"
-        android:textSize="30sp"
-        android:textColor="@color/colorPrimary"/>
-    <TextView
-        android:id="@+id/user_age"
+    <LinearLayout
         android:layout_marginLeft="15dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="21"
-        android:textSize="30sp"
-        android:textColor="@color/colorPrimary"/>
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tran van a"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:id="@+id/user_age"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
 </LinearLayout>

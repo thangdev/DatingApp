@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by nam_t on 13-Jan-18.
  */
@@ -14,8 +16,8 @@ import android.widget.TextView;
 public class user_ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public String selectedID;
     public TextView mName,mAge;
-    public ImageView mPic;
-    public  user_ViewHolder(View itemView){
+    public CircleImageView mPic;
+    public user_ViewHolder(View itemView){
         super(itemView);
         itemView.setOnClickListener(this);
         mName=itemView.findViewById(R.id.user_name);

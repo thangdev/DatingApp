@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             rsb:absoluteMaxValue="16"
-            rsb:absoluteMinValue="100" />
+            rsb:absoluteMinValue="60" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="100"
+                android:text="60"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"/>
         </RelativeLayout>

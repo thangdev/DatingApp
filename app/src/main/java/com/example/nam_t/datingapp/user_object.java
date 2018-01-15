@@ -7,9 +7,9 @@ package com.example.nam_t.datingapp;
 public class user_object {
     private String userID;
     private String user_name;
-    private int user_age;
+    private String user_age;
     private String user_ProfileImgURL;
-    public user_object (String userID,String user_name,int user_age,String user_ProfileImgURL){
+    public user_object(String userID, String user_name, String user_age, String user_ProfileImgURL){
         this.userID=userID;
         this.user_name=user_name;
         this.user_age=user_age;
@@ -25,10 +25,10 @@ public class user_object {
         this.user_name=user_name;
     }
 
-    public int getUser_age(){
+    public String getUser_age(){
         return user_age;
     }
-    public void setUser_age(int user_age){
+    public void setUser_age(String user_age){
         this.user_age=user_age;
     }
 
