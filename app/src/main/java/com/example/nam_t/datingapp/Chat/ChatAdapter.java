@@ -56,7 +56,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
     @Override
     public void onBindViewHolder(ViewHoler holder, int position) {
         holder.txtMessage.setText(chatOnjects.get(position).getTextMessage());
-        if(chatOnjects.get(position).getImageProfileUser() == "") {
+        if(chatOnjects.get(position).getImageProfileUser().isEmpty()) {
             Log.d("ONBINDVIEWHODLDE", "NULL PROFILE");
             holder.imgMessageProfile.setImageResource(R.drawable.ic_person_black_48dp);
         } else {

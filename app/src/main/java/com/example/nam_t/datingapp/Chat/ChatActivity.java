@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.nam_t.datingapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by khanhnguyen on 1/14/18.
  */
@@ -37,6 +40,9 @@ public class ChatActivity extends AppCompatActivity{
 
     private ImageView btnSend;
     private EditText txtSend;
+    // TODO: intent tu nam
+    private TextView txtNameToolbar, txtBirdayToolbar;
+    private CircleImageView imgUserToolbar;
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
 
@@ -50,8 +56,8 @@ public class ChatActivity extends AppCompatActivity{
         setContentView(R.layout.conversation);
 
         // Test
-        final String u = "nguyenkhanh97nd@gmail.com";
-        final String p = "123456";
+        final String u = "namtran1997@gmail.com";
+        final String p = "Namtran174";
         FirebaseAuth.getInstance().signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,8 +75,8 @@ public class ChatActivity extends AppCompatActivity{
         getCurrentUserProfileUrl();
 
         // TODO: INTENT từ của
-        matchId = "sbhEPYPW90ZuOrZIb119sh0mRoI2";
-        profileMatchUrl = "";
+        matchId = "MZEsqz76TrVBIHUmUcMnX9X0EPv1";
+        profileMatchUrl = "https://firebasestorage.googleapis.com/v0/b/date-now-ffc18.appspot.com/o/User_Profile%2F1906839609?alt=media&token=e76f771d-3784-4980-8166-3d52e9d8ad35";
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(currentUserID).child("connections").child("accepted")
