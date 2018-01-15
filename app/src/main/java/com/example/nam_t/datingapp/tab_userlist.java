@@ -79,7 +79,7 @@ public class tab_userlist extends Fragment {
                 age_view.setText(min+"-"+max+" years old");
                 userList.clear();
                 getSuitableUsers();
-                Toast.makeText(getContext(),"Searching...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Searching...",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -141,7 +141,7 @@ public class tab_userlist extends Fragment {
         usersDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (dataSnapshot.exists() && dataSnapshot.child("gender").getValue().toString().equals(oppositeUserGender)) {
+                if (dataSnapshot.exists()&& !dataSnapshot.child("connections").child("sent").hasChild(currentUId) && dataSnapshot.child("gender").getValue().toString().equals(oppositeUserGender)) {
                     int userAge=Calendar.getInstance().get(Calendar.YEAR)-Integer.parseInt(dataSnapshot.child("DOB_yyyy").getValue().toString());
                     if (userAge<=max&&userAge>=min) {
                         user_object item = new user_object(dataSnapshot.getKey(), dataSnapshot.child("name").getValue().toString(),String.valueOf(userAge),dataSnapshot.child("profileImageUrl").getValue().toString());
