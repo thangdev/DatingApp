@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +32,7 @@ public class SelectedProfileActivity extends AppCompatActivity{
     private Button btnLike;
     private String currentUId,userID,profileImageUrl;
     private FirebaseAuth mAuth;
-    private DatabaseReference usersDb,userDb;
+    private DatabaseReference usersDb,currentUserDb,userDb;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,18 +48,39 @@ public class SelectedProfileActivity extends AppCompatActivity{
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();
         currentUId = mAuth.getCurrentUser().getUid();
+        currentUserDb=FirebaseDatabase.getInstance().getReference().child("Users").child(currentUId);
         userID=getIntent().getExtras().get("SelectedID").toString();
         userDb=FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        checkSent();
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 usersDb.child(currentUId).child("connections").child("sent").child(userID).setValue(true);
                 Toast.makeText(SelectedProfileActivity.this,"Liked",Toast.LENGTH_SHORT).show();
                 btnLike.setEnabled(false);
+                btnLike.setText("Already liked");
+                checkSent();
             }
         });
+
         getUserInfo();
 
+    }
+    private void checkSent(){
+        currentUserDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("connections").child("sent").hasChild(userID)){
+                    btnLike.setEnabled(false);
+                    btnLike.setText("Already liked");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     private void getUserInfo(){
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {

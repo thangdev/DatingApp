@@ -120,6 +120,7 @@
         android:background="@drawable/gradientbackground"
         android:textColor="#fff"
         android:text="Log out"
+        android:id="@+id/btn_logout"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

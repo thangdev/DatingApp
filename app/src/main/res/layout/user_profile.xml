@@ -110,6 +110,8 @@
         android:textStyle="italic"/>
 
     <Button
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         android:id="@+id/btn_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
