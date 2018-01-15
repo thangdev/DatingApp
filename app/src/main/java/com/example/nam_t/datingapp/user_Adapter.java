@@ -31,7 +31,7 @@ public class user_Adapter extends RecyclerView.Adapter<user_ViewHolder> {
     }
     @Override
     public void onBindViewHolder(user_ViewHolder holder,int position){
-        holder.selectedID=user_list.get(position).getUserID();
+        holder.selectedID = user_list.get(position).getUserID();
         holder.mName.setText(user_list.get(position).getUser_name());
         holder.mAge.setText("Age: "+ user_list.get(position).getUser_age());
         Picasso.with(context).load(user_list.get(position).getUser_ProfileImgURL()).into(holder.mPic);

@@ -24,6 +24,7 @@ import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -149,6 +150,7 @@ public class tab_userlist extends Fragment {
                         userListAdapter.notifyDataSetChanged();
                     }
                 }
+                Collections.shuffle(userList);
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
