@@ -23,7 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,6 +56,7 @@ public class tab_profile extends Fragment {
     private Button btnSave, btnLogout;
 
     private String _name, _day, _month, _year, _bio, _avatar, _gender;
+
 
     public tab_profile() {
         // Constructor
@@ -103,7 +103,9 @@ public class tab_profile extends Fragment {
             }
         });
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(getUserGender()).child(mAuth.getCurrentUser().getUid());
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(mAuth.getCurrentUser().getUid());
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -115,9 +117,10 @@ public class tab_profile extends Fragment {
                 txtYearProfile.setText(dataSnapshot.child("DOB_yyyy").getValue().toString());
                 txtBioProfile.setText(dataSnapshot.child("bio").getValue().toString());
 
-                _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
-
-                Picasso.with(getActivity()).load(_avatar).into(imgProfile);
+                if(dataSnapshot.child("profileImageUrl").getValue() != null) {
+                    _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
+                    Picasso.with(getActivity()).load(_avatar).into(imgProfile);
+                }
             }
 
             @Override
@@ -226,6 +229,8 @@ public class tab_profile extends Fragment {
         return rootView;
     }
 
+
+
     public boolean validateForm(String name, String day, String month, String year, String bio) {
         if(name.length() <= 0 || name.length() > 35) return false;
         if(bio.length() <= 0 || bio.length() > 100) return false;
@@ -283,41 +288,6 @@ public class tab_profile extends Fragment {
         startActivityForResult(intent, SELECT_FILE);
     }
 
-    private String userGender;
-    public String getUserGender() {
-        userGender = "Female";
-        DatabaseReference maleDB = FirebaseDatabase.getInstance().getReference().child("User").child("Male");
-        maleDB.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(dataSnapshot.getKey().equals(mAuth.getCurrentUser().getUid())) {
-                    userGender = "Male";
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        return userGender;
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -328,5 +298,4 @@ public class tab_profile extends Fragment {
         }
 
     }
-
 }

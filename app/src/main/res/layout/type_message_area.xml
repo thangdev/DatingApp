@@ -13,12 +13,14 @@
         android:textColorHint="#dedede"
         android:textColor="#333"
         android:paddingLeft="10dp"
-        android:hint="Write a message"/>
+        android:hint="Write a message"
+        android:id="@+id/txtSend"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:padding="4dp"
-        android:src="@android:drawable/ic_menu_send"/>
+        android:src="@android:drawable/ic_menu_send"
+        android:id="@+id/btnSend"/>
 </LinearLayout>
