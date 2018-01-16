@@ -44,6 +44,8 @@ public class match_Adapter extends RecyclerView.Adapter<match_ViewHolder>{
         holder.mMatchName.setText(matchesList.get(position).getName());
         if(!matchesList.get(position).getProfileImageUrl().equals("")) {
             Picasso.with(context).load(matchesList.get(position).getProfileImageUrl()).into(holder.mMatchImage);
+        }else {
+            Picasso.with(context).load(R.drawable.ic_person_black_48dp).into(holder.mMatchImage);
         }
     }
 

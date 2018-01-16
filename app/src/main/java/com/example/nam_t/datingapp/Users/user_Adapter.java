@@ -37,6 +37,8 @@ public class user_Adapter extends RecyclerView.Adapter<user_ViewHolder> {
         holder.mAge.setText("Age: "+ user_list.get(position).getUser_age());
         if(!user_list.get(position).getUser_ProfileImgURL().equals("")) {
             Picasso.with(context).load(user_list.get(position).getUser_ProfileImgURL()).into(holder.mPic);
+        }else {
+            Picasso.with(context).load(R.drawable.ic_person_black_48dp).into(holder.mPic);
         }
     }
     public int getItemCount(){return this.user_list.size();}

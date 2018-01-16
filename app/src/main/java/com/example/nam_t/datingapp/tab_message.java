@@ -31,6 +31,12 @@ public class tab_message extends Fragment {
     private RecyclerView.LayoutManager matchLayoutManager;
     private String currentUserID;
 
+
+    private ArrayList<match_Object> resultsMatches = new ArrayList<match_Object>();
+    private List<match_Object> getDataSetMatches() {
+        return resultsMatches;
+    }
+
     public tab_message() {
         // Required empty public constructor
     }
@@ -49,7 +55,7 @@ public class tab_message extends Fragment {
         matchRecyclerView.setLayoutManager(matchLayoutManager);
         matchAdapter = new match_Adapter(getDataSetMatches(), getActivity());
         matchRecyclerView.setAdapter(matchAdapter);
-
+        resultsMatches.clear();
         getUserMatchId();
         return view;
     }
@@ -105,9 +111,5 @@ public class tab_message extends Fragment {
 
     }
 
-    private ArrayList<match_Object> resultsMatches = new ArrayList<match_Object>();
-    private List<match_Object> getDataSetMatches() {
-        return resultsMatches;
-    }
 
 }
