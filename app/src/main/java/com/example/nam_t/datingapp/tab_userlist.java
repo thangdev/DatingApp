@@ -87,26 +87,6 @@ public class tab_userlist extends Fragment {
         return view;
     }
 
-    private void isConnectionMatch(String userId) {
-        DatabaseReference currentUserConnectionsDb = usersDb.child(currentUId).child("connections").child("sent").child(userId);
-        currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Toast.makeText(getActivity(), "You have a new match!!", Toast.LENGTH_LONG).show();
-
-                    String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
-
-                    usersDb.child(dataSnapshot.getKey()).child("connections").child("accepted").child(currentUId).child("chatId").setValue(key);
-                    usersDb.child(currentUId).child("connections").child("accepted").child(dataSnapshot.getKey()).child("chatId").setValue(key);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
     private String userGender;
     private String oppositeUserGender;
     public void checkUserGender(){

@@ -137,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 userInfo.put("DOB_yyyy",year);
                                 userInfo.put("gender",radioButton.getText().toString());
                                 userInfo.put("bio","");
-                                userInfo.put("profileImageUrl", "default");
+                                userInfo.put("profileImageUrl", "");
                                 currentUserDb.updateChildren(userInfo);
                                 Toast.makeText(RegisterActivity.this,"Sign up successfully",Toast.LENGTH_SHORT).show();
 

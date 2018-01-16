@@ -57,6 +57,7 @@ public class SelectedProfileActivity extends AppCompatActivity{
             public void onClick(View v) {
                 usersDb.child(currentUId).child("connections").child("sent").child(userID).setValue(true);
                 Toast.makeText(SelectedProfileActivity.this,"Liked",Toast.LENGTH_SHORT).show();
+                isConnectionMatch(userID);
                 btnLike.setEnabled(false);
                 btnLike.setText("Already liked");
                 checkSent();
@@ -65,6 +66,27 @@ public class SelectedProfileActivity extends AppCompatActivity{
 
         getUserInfo();
 
+    }
+
+    private void isConnectionMatch(String userId) {
+        DatabaseReference currentUserConnectionsDb = usersDb.child(userId).child("connections").child("sent").child(currentUId);
+        currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Toast.makeText(SelectedProfileActivity.this, "You have a new match!!", Toast.LENGTH_LONG).show();
+
+                    String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
+
+                    usersDb.child(dataSnapshot.getKey()).child("connections").child("accepted").child(currentUId).child("chatId").setValue(key);
+                    usersDb.child(currentUId).child("connections").child("accepted").child(dataSnapshot.getKey()).child("chatId").setValue(key);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
     private void checkSent(){
         currentUserDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -106,6 +128,9 @@ public class SelectedProfileActivity extends AppCompatActivity{
                     if(map.get("profileImageUrl")!=null){
                         profileImageUrl = map.get("profileImageUrl").toString();
                         switch(profileImageUrl){
+                            case "":
+                                Picasso.with(getApplicationContext()).load(R.drawable.ic_person_black_48dp).into(user_img);
+                                break;
                             case "default":
                                 Picasso.with(getApplicationContext()).load(R.drawable.ic_person_black_48dp).into(user_img);
                                 break;
