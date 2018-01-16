@@ -93,7 +93,7 @@ public class tab_profile extends Fragment {
                 txtYearProfile.setText(dataSnapshot.child("DOB_yyyy").getValue().toString());
                 txtBioProfile.setText(dataSnapshot.child("bio").getValue().toString());
 
-                if(dataSnapshot.child("profileImageUrl").getValue() != null) {
+                if(! dataSnapshot.child("profileImageUrl").getValue().toString().isEmpty()) {
                     _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
                     Picasso.with(getActivity()).load(_avatar).into(imgProfile);
                 }
