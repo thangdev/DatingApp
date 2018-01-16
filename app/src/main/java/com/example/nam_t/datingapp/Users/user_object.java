@@ -1,4 +1,4 @@
-package com.example.nam_t.datingapp;
+package com.example.nam_t.datingapp.Users;
 
 /**
  * Created by nam_t on 13-Jan-18.

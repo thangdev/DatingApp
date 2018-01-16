@@ -1,4 +1,4 @@
-package com.example.nam_t.datingapp;
+package com.example.nam_t.datingapp.Users;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.nam_t.datingapp.R;
+import com.example.nam_t.datingapp.SelectedProfileActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

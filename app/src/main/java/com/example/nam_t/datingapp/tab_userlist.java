@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nam_t.datingapp.Users.user_Adapter;
+import com.example.nam_t.datingapp.Users.user_object;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
