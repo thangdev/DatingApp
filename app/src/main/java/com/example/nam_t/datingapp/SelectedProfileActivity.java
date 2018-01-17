@@ -51,16 +51,16 @@ public class SelectedProfileActivity extends AppCompatActivity{
         currentUserDb=FirebaseDatabase.getInstance().getReference().child("Users").child(currentUId);
         userID=getIntent().getExtras().get("SelectedID").toString();
         userDb=FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
-        checkSent();
+        checkSent(userID);
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usersDb.child(currentUId).child("connections").child("sent").child(userID).setValue(true);
+                usersDb.child(userID).child("connections").child("sent").child(currentUId).setValue(true);
                 Toast.makeText(SelectedProfileActivity.this,"Liked",Toast.LENGTH_SHORT).show();
                 isConnectionMatch(userID);
                 btnLike.setEnabled(false);
                 btnLike.setText("Already liked");
-                checkSent();
+                checkSent(userID);
             }
         });
 
@@ -69,8 +69,8 @@ public class SelectedProfileActivity extends AppCompatActivity{
     }
 
     private void isConnectionMatch(String userId) {
-        DatabaseReference currentUserConnectionsDb = usersDb.child(userId).child("connections").child("sent").child(currentUId);
-        currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference likedUserConnectionsDb = usersDb.child(currentUId).child("connections").child("sent").child(userId);
+        likedUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -88,11 +88,12 @@ public class SelectedProfileActivity extends AppCompatActivity{
             }
         });
     }
-    private void checkSent(){
-        currentUserDb.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void checkSent(String userId){
+        DatabaseReference userConnectionsDb = usersDb.child(userId).child("connections").child("sent").child(currentUId);
+        userConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("connections").child("sent").hasChild(userID)){
+                if(dataSnapshot.child("connections").child("sent").hasChild(currentUId)){
                     btnLike.setEnabled(false);
                     btnLike.setText("Already liked");
                 }

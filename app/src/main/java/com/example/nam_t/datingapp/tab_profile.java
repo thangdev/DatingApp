@@ -65,7 +65,6 @@ public class tab_profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.current_user_profile, container, false);
-
         mProgress = new ProgressDialog(getActivity());
 
         imageHoldUri = null;
@@ -95,9 +94,11 @@ public class tab_profile extends Fragment {
                 txtMonthProfile.setText(dataSnapshot.child("DOB_mm").getValue().toString());
                 txtYearProfile.setText(dataSnapshot.child("DOB_yyyy").getValue().toString());
                 txtBioProfile.setText(dataSnapshot.child("bio").getValue().toString());
-
-                if(dataSnapshot.child("profileImageUrl").getValue() != null) {
-                    _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
+                _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
+                if(_avatar.equals("")) {
+                   Picasso.with(getActivity()).load(R.drawable.ic_person_black_48dp).into(imgProfile);
+                }
+                else {
                     Picasso.with(getActivity()).load(_avatar).into(imgProfile);
                 }
             }
@@ -135,7 +136,7 @@ public class tab_profile extends Fragment {
                     if(imageHoldUri != null) {
 
                         mProgress.setTitle("Saving Profile");
-                        mProgress.setMessage("Vui lòng chờ...");
+                        mProgress.setMessage("Please wait...");
                         mProgress.show();
 
                         if(_avatar != null) {
