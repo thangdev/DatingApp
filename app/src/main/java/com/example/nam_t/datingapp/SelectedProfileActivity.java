@@ -52,6 +52,7 @@ public class SelectedProfileActivity extends AppCompatActivity{
         userID=getIntent().getExtras().get("SelectedID").toString();
         userDb=FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         checkSent();
+        checkAccepted();
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +62,7 @@ public class SelectedProfileActivity extends AppCompatActivity{
                 btnLike.setEnabled(false);
                 btnLike.setText("Already liked");
                 checkSent();
+                checkAccepted();
             }
         });
 
@@ -68,14 +70,14 @@ public class SelectedProfileActivity extends AppCompatActivity{
 
     }
 
-    private void isConnectionMatch(String userId) {
+    private void isConnectionMatch(final String userId) {
         DatabaseReference likedUserConnectionsDb = usersDb.child(userID);
         likedUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("connections").child("sent").child(currentUId).exists()){
                     Toast.makeText(SelectedProfileActivity.this, "You have a new match!!", Toast.LENGTH_LONG).show();
-
+                    currentUserDb.child("sent").child(userId).setValue(null);
                     String key = FirebaseDatabase.getInstance().getReference().child("connections").child("sent").child(currentUId).child("Chat").push().getKey();
 
                     usersDb.child(dataSnapshot.getKey()).child("connections").child("accepted").child(currentUId).child("chatId").setValue(key);
@@ -94,6 +96,23 @@ public class SelectedProfileActivity extends AppCompatActivity{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("connections").child("sent").hasChild(userID)){
+                    btnLike.setEnabled(false);
+                    btnLike.setText("Already liked");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+    private void checkAccepted(){
+        DatabaseReference userConnectionsDb = usersDb.child(currentUId);
+        userConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("connections").child("accepted").hasChild(userID)){
                     btnLike.setEnabled(false);
                     btnLike.setText("Already liked");
                 }

@@ -81,6 +81,7 @@ public class tab_userlist extends Fragment {
                 max=age.getSelectedMaxValue();
                 age_view.setText(min+"-"+max+" years old");
                 userList.clear();
+                userListAdapter.notifyDataSetChanged();
                 getSuitableUsers();
                 Toast.makeText(getContext(),"Searching...",Toast.LENGTH_LONG).show();
             }
