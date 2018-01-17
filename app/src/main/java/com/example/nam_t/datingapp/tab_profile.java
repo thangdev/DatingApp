@@ -64,7 +64,7 @@ public class tab_profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.current_user_profile, container, false);
+        final View rootView = inflater.inflate(R.layout.current_user_profile, container, false);
         mProgress = new ProgressDialog(getActivity());
 
         imageHoldUri = null;

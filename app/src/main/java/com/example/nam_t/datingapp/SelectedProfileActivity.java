@@ -89,7 +89,7 @@ public class SelectedProfileActivity extends AppCompatActivity{
         });
     }
     private void checkSent(String userId){
-        DatabaseReference userConnectionsDb = usersDb.child(userId).child("connections").child("sent").child(currentUId);
+        DatabaseReference userConnectionsDb = usersDb.child(userId);
         userConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
