@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 android:textColorHint="#FFF"
-                android:textSize="21sp"
+                android:textSize="15sp"
                 android:layout_marginTop="10dp"
 
 
@@ -50,7 +50,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+
                 android:weightSum="3">
                 <LinearLayout
                     android:orientation="vertical"
@@ -66,14 +66,13 @@
                         android:id="@+id/txtDayProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="date"
-                        android:textColorHint="#f0f0f0"
-                        android:textColor="@color/startBlue"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         android:digits="0123456789"
+                        android:hint="dd"
                         android:inputType="numberDecimal"
-                        />
+                        android:textColor="@color/startBlue"
+                        android:textColorHint="#eaa0a0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -81,17 +80,18 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:hint="mounth"
-                        android:textColorHint="#f0f0f0"
-                        android:textColor="@color/startBlue"
                         android:id="@+id/txtMonthProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:digits="0123456789"
-                        android:inputType="numberDecimal"/>
+                        android:hint="mm"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/startBlue"
+                        android:textColorHint="#eaa0a0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -99,17 +99,19 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <EditText
+                        android:id="@+id/txtYearProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="year"
-                        android:textColorHint="#f0f0f0"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/startBlue"
-                        android:id="@+id/txtYearProfile"
+
                         android:digits="0123456789"
-                        android:inputType="numberDecimal"/>
+                        android:hint="yyyy"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/startBlue"
+                        android:textColorHint="#eaa0a0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -129,9 +131,9 @@
         android:id="@+id/txtBioProfile"/>
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
 
         android:textColor="#fff"
         android:text="Save"
@@ -139,9 +141,21 @@
         android:background="@drawable/background_login"
         android:id="@+id/btnSave"/>
     <Button
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
+
+        android:textColor="#fff"
+        android:text="Change password "
+        android:textSize="12dp"
+
+        android:background="@drawable/background_login"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btn_changeP"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
 
         android:textColor="#fff"
         android:text="Log out"

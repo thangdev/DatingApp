@@ -19,10 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SelectedProfileActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".Chat.ChatActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SelectedProfileActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Chat.ChatActivity" />
+        <activity android:name=".Change_Password"></activity>
     </application>
 
 </manifest>

@@ -39,6 +39,7 @@ public class tab_profile extends Fragment {
     private Button btnSave;
     private Button btn_logout;
     private FirebaseAuth mAuth;
+    private Button btnChange;
 
     private DatabaseReference mUserDatabase;
     private StorageReference mStorageRef;
@@ -78,6 +79,7 @@ public class tab_profile extends Fragment {
         Log.d("msg","current user:"+currentUId);
         btn_logout = rootView.findViewById(R.id.btn_logout);
         btnSave = rootView.findViewById(R.id.btnSave);
+        btnChange = rootView.findViewById(R.id.btn_changeP);
 
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users")
@@ -110,6 +112,15 @@ public class tab_profile extends Fragment {
             @Override
             public void onClick(View v) {
                 pickImageProfilePicture();
+            }
+        });
+
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),Change_Password.class);
+                startActivity(intent);
+
             }
         });
 
