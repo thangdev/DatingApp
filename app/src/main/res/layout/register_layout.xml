@@ -6,7 +6,7 @@
 
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@drawable/Register_Image_background"
+    android:background="@drawable/register_image_background"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -25,6 +25,7 @@
                 android:id="@+id/new_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:background="@android:color/transparent"
                 android:drawableLeft="@drawable/person"
                 android:drawablePadding="12dp"
@@ -74,6 +75,7 @@
                 android:drawablePadding="12dp"
                 android:ems="10"
                 android:hint="Password"
+
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:padding="8dp"
@@ -111,6 +113,7 @@
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="dd"
+
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="10dp"
@@ -144,6 +147,7 @@
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="yyyy"
+
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="10dp"
@@ -209,12 +213,12 @@
                 android:id="@+id/btn_new"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/background_login"
                 android:padding="16dp"
-                android:text="Register"
+                android:text="Sign up "
                 android:textColor="#ffffff"
                 android:textSize="20dp" />
 
