@@ -2,30 +2,24 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grayLight"
+    android:background="@drawable/new_login_gradients"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@drawable/gradientbackground">
-            <!--<ImageView-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginTop="35dp"-->
-            <!--android:layout_width="100dp"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:src="@drawable/ic_person_black_48dp"-->
-            <!--android:id="@+id/imgProfile"/>-->
+            >
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:src="@drawable/khanhdev"
                 android:id="@+id/imgUserImg" />
             <TextView
@@ -40,10 +34,10 @@
                 android:id="@+id/txtNameProfile"/>
         </LinearLayout>
         <android.support.v7.widget.CardView
-            android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="200dp">
+            android:layout_marginTop="210dp">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -102,21 +96,24 @@
     <TextView
         android:id="@+id/user_bio"
         android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:text="Tôi là một Web Developer nhưng tôi lại đi dev Android"
         android:textSize="20sp"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:layout_gravity="center_horizontal"
-        android:textStyle="italic"/>
+
+        android:textStyle="bold"/>
 
     <Button
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
         android:id="@+id/btn_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/gradientbackground"
+        android:background="@drawable/background_login"
+
         android:textColor="#fff"
         android:text="Like"
         android:layout_gravity="center_horizontal"/>

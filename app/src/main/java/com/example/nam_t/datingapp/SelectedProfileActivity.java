@@ -69,14 +69,14 @@ public class SelectedProfileActivity extends AppCompatActivity{
     }
 
     private void isConnectionMatch(String userId) {
-        DatabaseReference currentUserConnectionsDb = usersDb.child(userId).child("connections").child("sent").child(currentUId);
-        currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference likedUserConnectionsDb = usersDb.child(userID);
+        likedUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.child("connections").child("sent").child(currentUId).exists()){
                     Toast.makeText(SelectedProfileActivity.this, "You have a new match!!", Toast.LENGTH_LONG).show();
 
-                    String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
+                    String key = FirebaseDatabase.getInstance().getReference().child("connections").child("sent").child(currentUId).child("Chat").push().getKey();
 
                     usersDb.child(dataSnapshot.getKey()).child("connections").child("accepted").child(currentUId).child("chatId").setValue(key);
                     usersDb.child(currentUId).child("connections").child("accepted").child(dataSnapshot.getKey()).child("chatId").setValue(key);
@@ -89,7 +89,8 @@ public class SelectedProfileActivity extends AppCompatActivity{
         });
     }
     private void checkSent(){
-        currentUserDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference userConnectionsDb = usersDb.child(currentUId);
+        userConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("connections").child("sent").hasChild(userID)){

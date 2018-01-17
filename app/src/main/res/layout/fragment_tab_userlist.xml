@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_login_gradients"
     xmlns:rsb="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.nam_t.datingapp.tab_userlist">
@@ -14,7 +15,7 @@
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
-        android:background="@drawable/gradientbackground">
+        >
 
 
         <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
@@ -46,21 +47,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Age:  "
-                android:textSize="20dp"
                 android:gravity="center_vertical"
-                android:textColor="@android:color/white"/>
+                android:text="Swipe "
+                android:textColor="@android:color/white"
+                android:textSize="17dp" />
             <TextView
                 android:id="@+id/age_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:gravity="center_vertical"
-                android:text="16-100 years old"/>
+                android:text="to choose age range"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -84,13 +86,16 @@
         android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp">
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+
                 android:id="@+id/user_list"
                 android:scrollbars="vertical">
 
