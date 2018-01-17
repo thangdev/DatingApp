@@ -132,7 +132,7 @@ public class tab_profile extends Fragment {
                     if(imageHoldUri != null) {
 
                         mProgress.setTitle("Saving Profile");
-                        mProgress.setMessage("Vui lòng chờ...");
+                        mProgress.setMessage("Please wait..loading..");
                         mProgress.show();
 
                         if(_avatar != null) {
