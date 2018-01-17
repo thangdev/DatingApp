@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.nam_t.datingapp.Matches.match_Adapter;
 import com.example.nam_t.datingapp.Matches.match_Object;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,9 +69,9 @@ public class tab_message extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    for(DataSnapshot match : dataSnapshot.getChildren()){
-                        FetchMatchInformation(match.getKey());
-                    }
+                    ArrayList<String> obj=new ArrayList<>();
+                    obj.add(dataSnapshot.getChildren().toString());
+                    FetchMatchInformation(obj);
                 }
             }
 
@@ -80,17 +82,20 @@ public class tab_message extends Fragment {
         });
     }
 
-    private void FetchMatchInformation(String key) {
-        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
-        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void FetchMatchInformation(final ArrayList key) {
+
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users");
+        userDb.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    String userId = dataSnapshot.getKey();
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if(key.contains(dataSnapshot.getKey().toString())){
+                    Log.d("msg","aaaaaaaaaaaaaaaaaaaaaaaaa");
+                    String userId = dataSnapshot.getKey().toString();
                     String name = "";
                     String profileImageUrl = "";
                     if(dataSnapshot.child("name").getValue()!=null){
                         name = dataSnapshot.child("name").getValue().toString();
+
                     }
                     if(dataSnapshot.child("profileImageUrl").getValue()!=null){
                         profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
@@ -101,6 +106,21 @@ public class tab_message extends Fragment {
                     resultsMatches.add(obj);
                     matchAdapter.notifyDataSetChanged();
                 }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override

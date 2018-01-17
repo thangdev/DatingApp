@@ -56,7 +56,6 @@ public class SelectedProfileActivity extends AppCompatActivity{
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usersDb.child(currentUId).child("connections").child("sent").child(userID).setValue(true);
                 Toast.makeText(SelectedProfileActivity.this,"Liked",Toast.LENGTH_SHORT).show();
                 isConnectionMatch(userID);
                 btnLike.setEnabled(false);
@@ -71,17 +70,20 @@ public class SelectedProfileActivity extends AppCompatActivity{
     }
 
     private void isConnectionMatch(final String userId) {
-        DatabaseReference likedUserConnectionsDb = usersDb.child(userID);
+        final DatabaseReference likedUserConnectionsDb = usersDb.child(userID);
         likedUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("connections").child("sent").child(currentUId).exists()){
                     Toast.makeText(SelectedProfileActivity.this, "You have a new match!!", Toast.LENGTH_LONG).show();
-                    currentUserDb.child("sent").child(userId).setValue(null);
+                    userDb.child("connections").child("sent").child(currentUId).setValue(null);
                     String key = FirebaseDatabase.getInstance().getReference().child("connections").child("sent").child(currentUId).child("Chat").push().getKey();
 
                     usersDb.child(dataSnapshot.getKey()).child("connections").child("accepted").child(currentUId).child("chatId").setValue(key);
                     usersDb.child(currentUId).child("connections").child("accepted").child(dataSnapshot.getKey()).child("chatId").setValue(key);
+                }
+                else {
+                    usersDb.child(currentUId).child("connections").child("sent").child(userID).setValue(true);
                 }
             }
 
