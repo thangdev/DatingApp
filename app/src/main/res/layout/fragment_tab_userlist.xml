@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:rsb="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.nam_t.datingapp.tab_userlist">
@@ -11,21 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@android:color/darker_gray">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age:  "
-            android:textSize="20dp"
-            android:textColor="@android:color/white"/>
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/gradientbackground">
+
 
         <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
             android:id="@+id/filter_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            rsb:absoluteMinValue="100"
-            rsb:absoluteMaxValue="16"/>
+            rsb:absoluteMaxValue="16"
+            rsb:absoluteMinValue="60" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -40,23 +37,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="100"
+                android:text="60"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"/>
         </RelativeLayout>
-        <Button
-            android:id="@+id/save"
-            android:layout_gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:textSize="15sp"
-            android:textColor="@android:color/white"
-            android:text="Save"
-            android:background="@drawable/button"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Age:  "
+                android:textSize="20dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"/>
+            <TextView
+                android:id="@+id/age_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:text="16-100 years old"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/save"
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/white"
+                    android:text="Save"
+                    android:background="@drawable/button"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
