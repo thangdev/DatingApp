@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nam_t.datingapp.Chat.ChatActivity;
@@ -19,14 +18,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class match_ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView mMatchName;
     public String mMatchId;
-    public ImageView mMatchImage;
+    public CircleImageView mMatchImage;
     public match_ViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
 
         mMatchName = (TextView) itemView.findViewById(R.id.user_name);
 
-        mMatchImage = (ImageView) itemView.findViewById(R.id.user_pic);
+        mMatchImage = (CircleImageView) itemView.findViewById(R.id.user_pic);
     }
 
     @Override

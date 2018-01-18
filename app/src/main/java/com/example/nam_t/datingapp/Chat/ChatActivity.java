@@ -1,21 +1,16 @@
 package com.example.nam_t.datingapp.Chat;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nam_t.datingapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,28 +51,20 @@ public class ChatActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conversation);
 
-        // Test
-        final String u = "namtran1997@gmail.com";
-        final String p = "Namtran174";
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("sad", "onAuthStateChanged: ");
-                if(task.isSuccessful()) {
-                    Log.d("sada", "Success: ");
-                } else {
-                    Log.d("sads", "Failt: ");
-                }
-            }
-        });
+        txtNameToolbar = (TextView) findViewById(R.id.txtNameToolbar);
+        txtBirdayToolbar = (TextView) findViewById(R.id.txtBirdayToolbar);
+        imgUserToolbar = (CircleImageView) findViewById(R.id.imgUserToolbar);
 
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getCurrentUserProfileUrl();
 
-        // TODO: INTENT từ của
-        matchId = "MZEsqz76TrVBIHUmUcMnX9X0EPv1";
-        profileMatchUrl = "https://firebasestorage.googleapis.com/v0/b/date-now-ffc18.appspot.com/o/User_Profile%2F1906839609?alt=media&token=e76f771d-3784-4980-8166-3d52e9d8ad35";
+        // TODO: INTENT từ của nam
+
+        matchId = getIntent().getExtras().get("matchId").toString();
+        getInfoUserMatchById(matchId);
+
+//        profileMatchUrl = "https://firebasestorage.googleapis.com/v0/b/date-now-ffc18.appspot.com/o/User_Profile%2F1906839609?alt=media&token=e76f771d-3784-4980-8166-3d52e9d8ad35";
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(currentUserID).child("connections").child("accepted")
@@ -158,7 +146,6 @@ public class ChatActivity extends AppCompatActivity{
                     String createdByUser = null;
                     if(dataSnapshot.child("text").getValue() != null) {
                         message = dataSnapshot.child("text").getValue().toString();
-                        Log.d("hihi", "dm" + message);
                     }
                     if(dataSnapshot.child("createdByUser").getValue() != null) {
                         createdByUser = dataSnapshot.child("createdByUser").getValue().toString();
@@ -169,10 +156,8 @@ public class ChatActivity extends AppCompatActivity{
                         if(createdByUser.equals(currentUserID)) {
                             currentUserBoolean = true;
                             profileUrl = currentUserProfileUrl;
-                            Log.e("CHECK PROFILE", mDatabaseUser.getParent().getParent().getKey() + "DAY");
                         }
                         ChatObject newMessage = new ChatObject(profileUrl, message, currentUserBoolean);
-                        Log.d("Tin nhan", message + "cua " + currentUserBoolean);
                         chatObjects.add(newMessage);
                         chatAdapter.notifyDataSetChanged();
 
@@ -218,5 +203,31 @@ public class ChatActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    public void getInfoUserMatchById(String id) {
+
+        DatabaseReference getUserById = FirebaseDatabase.getInstance().getReference().child("Users").child(id);
+        getUserById.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                txtNameToolbar.setText(dataSnapshot.child("name").getValue().toString());
+                txtBirdayToolbar.setText(dataSnapshot.child("DOB_dd").getValue().toString() + " - " +
+                                         dataSnapshot.child("DOB_mm").getValue().toString() + " - " +
+                                         dataSnapshot.child("DOB_yyyy").getValue().toString());
+                if(! dataSnapshot.child("profileImageUrl").getValue().toString().isEmpty()) {
+                    profileMatchUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                    Picasso.with(getApplicationContext()).load(dataSnapshot.child("profileImageUrl").getValue().toString())
+                            .into(imgUserToolbar);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

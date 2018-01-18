@@ -3,7 +3,6 @@ package com.example.nam_t.datingapp.Chat;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +56,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
     @Override
     public void onBindViewHolder(ViewHoler holder, int position) {
         holder.txtMessage.setText(chatOnjects.get(position).getTextMessage());
-        if(chatOnjects.get(position).getImageProfileUser().isEmpty()) {
-            Log.d("ONBINDVIEWHODLDE", "NULL PROFILE");
+        if(chatOnjects.get(position).getImageProfileUser() == null || chatOnjects.get(position).getImageProfileUser().toString().isEmpty()) {
             holder.imgMessageProfile.setImageResource(R.drawable.ic_person_black_48dp);
         } else {
             Picasso.with(context).load(chatOnjects.get(position).getImageProfileUser()).into(holder.imgMessageProfile);

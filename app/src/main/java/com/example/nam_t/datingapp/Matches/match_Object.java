@@ -31,7 +31,5 @@ public class match_Object {
     public String getProfileImageUrl(){
         return profileImageUrl;
     }
-    public void setProfileImageUrl(String profileImageUrl){
-        this.profileImageUrl = profileImageUrl;
-    }
+
 }
