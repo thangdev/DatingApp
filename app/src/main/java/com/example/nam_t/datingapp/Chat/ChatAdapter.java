@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nam_t.datingapp.R;
@@ -33,9 +34,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
     @Override
     public int getItemViewType(int position) {
         if(chatOnjects.get(position).isCurrentUser()) {
+            if(chatOnjects.get(position).isImageMessage()) {
+                return 11;
+            }
             return 1;
+        } else {
+            if(chatOnjects.get(position).isImageMessage()) {
+                return 22;
+            } else {
+                return 0;
+            }
         }
-        return 0;
     }
 
     @Override
@@ -45,9 +54,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
         if(viewType == 1) {
             View itemView = layoutInflater.inflate(R.layout.user_sent_message, parent, false);
             return new ViewHoler(itemView);
+        } else if(viewType == 11) {
+            View itemView = layoutInflater.inflate(R.layout.user_sent_image_message, parent, false);
+            return new ViewHoler(itemView);
+        } else if(viewType == 22) {
+            View itemView = layoutInflater.inflate(R.layout.user_received_image_message, parent, false);
+            return new ViewHoler(itemView);
+        } else {
+            View itemView = layoutInflater.inflate(R.layout.user_received_message, parent, false);
+            return new ViewHoler(itemView);
         }
-        View itemView = layoutInflater.inflate(R.layout.user_received_message, parent, false);
-        return new ViewHoler(itemView);
 
     }
 
@@ -55,7 +71,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
 
     @Override
     public void onBindViewHolder(ViewHoler holder, int position) {
-        holder.txtMessage.setText(chatOnjects.get(position).getTextMessage());
+
+        if(chatOnjects.get(position).isImageMessage()) {
+            Picasso.with(context).load(chatOnjects.get(position).getImageMessageDb()).into(holder.imgMessage);
+        } else {
+            holder.txtMessage.setText(chatOnjects.get(position).getTextMessage());
+        }
         if(chatOnjects.get(position).getImageProfileUser() == null || chatOnjects.get(position).getImageProfileUser().toString().isEmpty()) {
             holder.imgMessageProfile.setImageResource(R.drawable.ic_person_black_48dp);
         } else {
@@ -71,11 +92,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
     public class ViewHoler extends RecyclerView.ViewHolder {
         TextView txtMessage;
         CircleImageView imgMessageProfile;
+        ImageView imgMessage;
 
         public ViewHoler(View itemView) {
             super(itemView);
             txtMessage = (TextView) itemView.findViewById(R.id.txtMessage);
             imgMessageProfile = (CircleImageView) itemView.findViewById(R.id.imgMessageProfile);
+            imgMessage = (ImageView) itemView.findViewById(R.id.imgMessage);
         }
     }
 }

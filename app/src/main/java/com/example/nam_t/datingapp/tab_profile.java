@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +75,7 @@ public class tab_profile extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         currentUId = mAuth.getCurrentUser().getUid();
-        Log.d("msg","current user:"+currentUId);
+
         btn_logout = rootView.findViewById(R.id.btn_logout);
         btnSave = rootView.findViewById(R.id.btnSave);
         btnChange = rootView.findViewById(R.id.btn_changeP);
@@ -258,7 +257,6 @@ public class tab_profile extends Fragment {
 
 
     public void galleryIntent() {
-        Log.d("Text", "Gallery");
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, SELECT_FILE);

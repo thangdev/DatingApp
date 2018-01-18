@@ -81,6 +81,13 @@
             android:paddingLeft="10dp"
             android:hint="Write a message"
             android:id="@+id/txtSend"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:padding="4dp"
+            android:src="@android:drawable/ic_menu_camera"
+            android:id="@+id/btnCamera"/>
 
         <ImageView
             android:layout_width="match_parent"

@@ -1,16 +1,24 @@
 package com.example.nam_t.datingapp.Chat;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nam_t.datingapp.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,9 +45,14 @@ public class ChatActivity extends AppCompatActivity{
 
     private String currentUserID, currentUserProfileUrl, matchId, profileMatchUrl, chatId;
 
-    private ImageView btnSend;
+    private ImageView btnSend, btnCamera;
     private EditText txtSend;
-    // TODO: intent tu nam
+    private Uri imageHoldUri;
+
+    private ProgressDialog mProgress;
+
+    private static final int SELECT_FILE = 1;
+
     private TextView txtNameToolbar, txtBirdayToolbar;
     private CircleImageView imgUserToolbar;
 
@@ -55,16 +71,16 @@ public class ChatActivity extends AppCompatActivity{
         txtBirdayToolbar = (TextView) findViewById(R.id.txtBirdayToolbar);
         imgUserToolbar = (CircleImageView) findViewById(R.id.imgUserToolbar);
 
+        btnCamera = (ImageView) findViewById(R.id.btnCamera);
+
+        mProgress = new ProgressDialog(ChatActivity.this);
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getCurrentUserProfileUrl();
 
-        // TODO: INTENT từ của nam
 
         matchId = getIntent().getExtras().get("matchId").toString();
         getInfoUserMatchById(matchId);
-
-//        profileMatchUrl = "https://firebasestorage.googleapis.com/v0/b/date-now-ffc18.appspot.com/o/User_Profile%2F1906839609?alt=media&token=e76f771d-3784-4980-8166-3d52e9d8ad35";
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(currentUserID).child("connections").child("accepted")
@@ -84,6 +100,12 @@ public class ChatActivity extends AppCompatActivity{
                 sendMessage();
             }
         });
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendCamera();
+            }
+        });
     }
 
     private void sendMessage() {
@@ -100,6 +122,66 @@ public class ChatActivity extends AppCompatActivity{
         }
 
         txtSend.setText(null);
+
+    }
+
+    private void sendCamera() {
+        final CharSequence[] items = {"Choose from Library", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(ChatActivity.this);
+        builder.setTitle("Add Photo");
+
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(items[which].equals("Choose from Library")) {
+                    sendCameraIntent();
+                } else if(items[which].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        builder.show();
+    }
+    public void sendCameraIntent() {
+        Log.d("Camera Intent", "Show gallery");
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, SELECT_FILE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Save URI from Gallery
+        if(requestCode == SELECT_FILE && resultCode == Activity.RESULT_OK) {
+
+            if(data.getData() != null) {
+                mProgress.setTitle("Saving Profile");
+                mProgress.setMessage("Please wait..loading..");
+                mProgress.show();
+
+                final StorageReference mChildStorage = FirebaseStorage.getInstance().getReference()
+                        .child("Message_Image").child(data.getData().getLastPathSegment());
+                mChildStorage.putFile(data.getData()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        String urlMessageImage = taskSnapshot.getDownloadUrl().toString();
+
+                        DatabaseReference newMessageImageDb = mDatabaseChat.push();
+
+                        Map newMessageImage = new HashMap();
+                        newMessageImage.put("createdByUser", currentUserID);
+                        newMessageImage.put("image", urlMessageImage);
+
+                        newMessageImageDb.setValue(newMessageImage);
+                    }
+                });
+
+                mProgress.dismiss();
+            }
+        }
 
     }
 
@@ -131,8 +213,6 @@ public class ChatActivity extends AppCompatActivity{
 
         final ArrayList<ChatObject> chatObjects = new ArrayList<>();
 
-        // TODO: get data to object
-
         final ChatAdapter chatAdapter = new ChatAdapter(chatObjects, getApplicationContext());
         recyclerView.setAdapter(chatAdapter);
 
@@ -141,26 +221,42 @@ public class ChatActivity extends AppCompatActivity{
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if(dataSnapshot.exists()) {
 
-                    // TODO: add object to arraylist. khai bao tren dau . chuyen userid sang boolean current user
                     String message = null;
                     String createdByUser = null;
+                    String imgMessage = null;
                     if(dataSnapshot.child("text").getValue() != null) {
                         message = dataSnapshot.child("text").getValue().toString();
                     }
                     if(dataSnapshot.child("createdByUser").getValue() != null) {
                         createdByUser = dataSnapshot.child("createdByUser").getValue().toString();
                     }
+                    if(dataSnapshot.child("image").getValue() != null) {
+                        imgMessage = dataSnapshot.child("image").getValue().toString();
+                    }
                     if(message != null && createdByUser != null) {
                         boolean currentUserBoolean = false;
+                        boolean imgMessageBoolean = false;
                         String profileUrl = profileMatchUrl;
                         if(createdByUser.equals(currentUserID)) {
                             currentUserBoolean = true;
                             profileUrl = currentUserProfileUrl;
                         }
-                        ChatObject newMessage = new ChatObject(profileUrl, message, currentUserBoolean);
+                        ChatObject newMessage = new ChatObject(profileUrl, message, imgMessage, currentUserBoolean, imgMessageBoolean);
                         chatObjects.add(newMessage);
                         chatAdapter.notifyDataSetChanged();
 
+                    }
+                    if(imgMessage != null && createdByUser != null) {
+                        boolean currentUserBoolean = false;
+                        boolean imgMessageBoolean = true;
+                        String profileUrl = profileMatchUrl;
+                        if(createdByUser.equals(currentUserID)) {
+                            currentUserBoolean = true;
+                            profileUrl = currentUserProfileUrl;
+                        }
+                        ChatObject newMessage = new ChatObject(profileUrl, message, imgMessage, currentUserBoolean, imgMessageBoolean);
+                        chatObjects.add(newMessage);
+                        chatAdapter.notifyDataSetChanged();
                     }
 
                 }
@@ -168,22 +264,18 @@ public class ChatActivity extends AppCompatActivity{
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
