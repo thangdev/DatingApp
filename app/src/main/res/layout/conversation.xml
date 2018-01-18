@@ -20,7 +20,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:src="@drawable/khanhdev"
+                android:src="@drawable/ic_person_black_48dp"
                 android:id="@+id/imgUserToolbar"/>
             <LinearLayout
                 android:layout_width="match_parent"
