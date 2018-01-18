@@ -22,11 +22,11 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="50dp"
                 android:src="@drawable/logo" />
 
             <EditText
@@ -40,9 +40,10 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-
+                android:textColor="@android:color/white"
                 android:padding="10dp"
-                android:textColorHint="#ffffff" />
+                android:textColorHint="#ffffff"
+                android:textSize="20sp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -61,7 +62,9 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:padding="8dp"
-                android:textColorHint="#fff" />
+                android:textColorHint="#fff"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

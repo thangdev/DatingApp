@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class tab_profile extends Fragment {
     private Button btnSave;
     private Button btn_logout;
     private FirebaseAuth mAuth;
+    private Button btnChange;
 
     private DatabaseReference mUserDatabase;
     private StorageReference mStorageRef;
@@ -59,7 +61,8 @@ public class tab_profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.current_user_profile, container, false);
+        View rootView = inflater.inflate(R.layout.current_user_profile, container, false);
+
         mProgress = new ProgressDialog(getActivity());
 
         imageHoldUri = null;
@@ -71,9 +74,12 @@ public class tab_profile extends Fragment {
         txtYearProfile = (TextView) rootView.findViewById(R.id.txtYearProfile);
         txtBioProfile = (TextView) rootView.findViewById(R.id.txtBioProfile);
         mAuth = FirebaseAuth.getInstance();
+
         currentUId = mAuth.getCurrentUser().getUid();
-        btn_logout=rootView.findViewById(R.id.btn_logout);
-        btnSave=rootView.findViewById(R.id.btnSave);
+        Log.d("msg","current user:"+currentUId);
+        btn_logout = rootView.findViewById(R.id.btn_logout);
+        btnSave = rootView.findViewById(R.id.btnSave);
+        btnChange = rootView.findViewById(R.id.btn_changeP);
 
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users")
@@ -88,11 +94,9 @@ public class tab_profile extends Fragment {
                 txtMonthProfile.setText(dataSnapshot.child("DOB_mm").getValue().toString());
                 txtYearProfile.setText(dataSnapshot.child("DOB_yyyy").getValue().toString());
                 txtBioProfile.setText(dataSnapshot.child("bio").getValue().toString());
-                _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
-                if(_avatar.equals("")) {
-                   Picasso.with(getActivity()).load(R.drawable.ic_person_black_48dp).into(imgProfile);
-                }
-                else {
+
+                if(! dataSnapshot.child("profileImageUrl").getValue().toString().isEmpty()) {
+                    _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
                     Picasso.with(getActivity()).load(_avatar).into(imgProfile);
                 }
             }
@@ -108,6 +112,15 @@ public class tab_profile extends Fragment {
             @Override
             public void onClick(View v) {
                 pickImageProfilePicture();
+            }
+        });
+
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ChangePasswordActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -130,7 +143,7 @@ public class tab_profile extends Fragment {
                     if(imageHoldUri != null) {
 
                         mProgress.setTitle("Saving Profile");
-                        mProgress.setMessage("Please wait...");
+                        mProgress.setMessage("Please wait..loading..");
                         mProgress.show();
 
                         if(_avatar != null) {
@@ -161,7 +174,7 @@ public class tab_profile extends Fragment {
                         });
                     } else {
                         mProgress.setTitle("Saving Profile");
-                        mProgress.setMessage("Vui lòng chờ...");
+                        mProgress.setMessage("Please wait...");
                         mProgress.show();
 
                         mUserDatabase.child("name").setValue(_name);
@@ -245,6 +258,7 @@ public class tab_profile extends Fragment {
 
 
     public void galleryIntent() {
+        Log.d("Text", "Gallery");
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, SELECT_FILE);
