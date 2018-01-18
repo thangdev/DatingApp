@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,14 +63,18 @@ public class tab_message extends Fragment {
 
     private void getUserMatchId() {
 
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("accepted");
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(currentUserID).child("connections").child("accepted");
+
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    ArrayList<String> obj=new ArrayList<>();
-                    obj.add(dataSnapshot.getChildren().toString());
-                    FetchMatchInformation(obj);
+                    ArrayList<String> keys=new ArrayList<>();
+                    for(DataSnapshot objectSnapshot: dataSnapshot.getChildren()) {
+                        keys.add(objectSnapshot.getKey());
+                    }
+                    FetchMatchInformation(keys);
                 }
             }
 
@@ -82,14 +85,14 @@ public class tab_message extends Fragment {
         });
     }
 
-    private void FetchMatchInformation(final ArrayList key) {
+    private void FetchMatchInformation(final ArrayList keys) {
 
         DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users");
         userDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(key.contains(dataSnapshot.getKey().toString())){
-                    Log.d("msg","aaaaaaaaaaaaaaaaaaaaaaaaa");
+                if(keys.contains(dataSnapshot.getKey().toString())){
+
                     String userId = dataSnapshot.getKey().toString();
                     String name = "";
                     String profileImageUrl = "";
