@@ -14,10 +14,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private Button mLogin,mRegister;
     private EditText mEmail, mPassword;
+    private Button btn_forgot_password;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -39,6 +41,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+
+        btn_forgot_password = (Button) findViewById(R.id.btn_forgotPassword);
+
+        btn_forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         mLogin = (Button) findViewById(R.id.btn_login);
@@ -62,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "sign in error !!! ", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid()).child("online").setValue(true);
                             }
 
                         }

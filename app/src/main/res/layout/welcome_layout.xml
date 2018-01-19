@@ -96,14 +96,19 @@
                 android:textColor="#ffff"
                 android:textSize="20dp" />
 
-
-
-
-
-
+            <Button
+                android:id="@+id/btn_forgotPassword"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:textStyle="italic"
+                android:textColor="#f22929"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:text="forgot password ?"
+                android:textSize="14dp" />
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>

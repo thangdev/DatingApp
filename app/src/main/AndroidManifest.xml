@@ -24,6 +24,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".Chat.ChatActivity"/>
         <activity android:name=".ChangePasswordActivity"/>
+        <activity android:name=".ResetPasswordActivity"/>
     </application>
 
 </manifest>

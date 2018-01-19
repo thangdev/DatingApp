@@ -56,7 +56,7 @@ public class ChatActivity extends AppCompatActivity{
 
     private static final int SELECT_FILE = 1;
 
-    private TextView txtNameToolbar, txtBirdayToolbar;
+    private TextView txtNameToolbar;
     private CircleImageView imgUserToolbar;
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
@@ -72,7 +72,6 @@ public class ChatActivity extends AppCompatActivity{
         setContentView(R.layout.conversation);
 
         txtNameToolbar = (TextView) findViewById(R.id.txtNameToolbar);
-        txtBirdayToolbar = (TextView) findViewById(R.id.txtBirdayToolbar);
         imgUserToolbar = (CircleImageView) findViewById(R.id.imgUserToolbar);
 
         btnCamera = (ImageView) findViewById(R.id.btnCamera);
@@ -314,9 +313,6 @@ public class ChatActivity extends AppCompatActivity{
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 txtNameToolbar.setText(dataSnapshot.child("name").getValue().toString());
-                txtBirdayToolbar.setText(dataSnapshot.child("DOB_dd").getValue().toString() + " - " +
-                                         dataSnapshot.child("DOB_mm").getValue().toString() + " - " +
-                                         dataSnapshot.child("DOB_yyyy").getValue().toString());
                 if(! dataSnapshot.child("profileImageUrl").getValue().toString().isEmpty()) {
                     profileMatchUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                     Picasso.with(getApplicationContext()).load(dataSnapshot.child("profileImageUrl").getValue().toString())
