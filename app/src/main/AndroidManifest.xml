@@ -23,7 +23,8 @@
         <activity android:name=".SelectedProfileActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Chat.ChatActivity" />
-        <activity android:name=".Change_Password"></activity>
+        <activity android:name=".Change_Password" />
+        <activity android:name=".ResetPasswordActivity" />
     </application>
 
 </manifest>

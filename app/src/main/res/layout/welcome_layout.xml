@@ -93,6 +93,17 @@
                android:textColor="#ffff"
                android:textSize="20dp" />
 
+           <Button
+               android:layout_marginTop="10dp"
+               android:id="@+id/btn_forgotPassword"
+               android:layout_width="100dp"
+               android:textStyle="italic"
+               android:textColor="#f22929"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:text="forgot password ?"
+               android:textSize="7dp" />
+
 
                
                
