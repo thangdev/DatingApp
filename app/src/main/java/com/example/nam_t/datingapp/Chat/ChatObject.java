@@ -10,18 +10,20 @@ public class ChatObject {
     private String imageMessageDb;
     private boolean currentUser;
     private boolean imageMessage;
+    private String time;
 
     public String getImageMessageDb() {
         return imageMessageDb;
     }
 
-    public ChatObject(String imageProfileUser, String textMessage, String imageMessageDb, boolean currentUser, boolean imageMessage) {
+    public ChatObject(String imageProfileUser, String textMessage, String imageMessageDb, boolean currentUser, boolean imageMessage, String time) {
 
         this.imageProfileUser = imageProfileUser;
         this.textMessage = textMessage;
         this.imageMessageDb = imageMessageDb;
         this.currentUser = currentUser;
         this.imageMessage = imageMessage;
+        this.time=time;
     }
 
     //    public ChatObject(String imageProfileUser, String textMessage, boolean currentUser) {
@@ -45,5 +47,8 @@ public class ChatObject {
 
     public boolean isImageMessage() {
         return imageMessage;
+    }
+    public String getTime(){
+        return time;
     }
 }

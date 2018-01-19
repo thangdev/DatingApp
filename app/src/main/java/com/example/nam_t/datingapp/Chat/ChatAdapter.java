@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nam_t.datingapp.R;
 import com.squareup.picasso.Picasso;
@@ -20,7 +21,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by khanhnguyen on 1/15/18.
  */
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     ArrayList<ChatObject> chatOnjects;
 
@@ -48,21 +49,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
     }
 
     @Override
-    public ViewHoler onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         if(viewType == 1) {
             View itemView = layoutInflater.inflate(R.layout.user_sent_message, parent, false);
-            return new ViewHoler(itemView);
+            return new ViewHolder(itemView);
         } else if(viewType == 11) {
             View itemView = layoutInflater.inflate(R.layout.user_sent_image_message, parent, false);
-            return new ViewHoler(itemView);
+            return new ViewHolder(itemView);
         } else if(viewType == 22) {
             View itemView = layoutInflater.inflate(R.layout.user_received_image_message, parent, false);
-            return new ViewHoler(itemView);
+            return new ViewHolder(itemView);
         } else {
             View itemView = layoutInflater.inflate(R.layout.user_received_message, parent, false);
-            return new ViewHoler(itemView);
+            return new ViewHolder(itemView);
         }
 
     }
@@ -70,8 +71,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
 
 
     @Override
-    public void onBindViewHolder(ViewHoler holder, int position) {
-
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.time=chatOnjects.get(position).getTime();
         if(chatOnjects.get(position).isImageMessage()) {
             Picasso.with(context).load(chatOnjects.get(position).getImageMessageDb()).into(holder.imgMessage);
         } else {
@@ -89,16 +90,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHoler>{
         return chatOnjects.size();
     }
 
-    public class ViewHoler extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtMessage;
         CircleImageView imgMessageProfile;
         ImageView imgMessage;
+        String time;
 
-        public ViewHoler(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             txtMessage = (TextView) itemView.findViewById(R.id.txtMessage);
             imgMessageProfile = (CircleImageView) itemView.findViewById(R.id.imgMessageProfile);
             imgMessage = (ImageView) itemView.findViewById(R.id.imgMessage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Sent at "+time,Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

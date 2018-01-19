@@ -31,7 +31,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +60,7 @@ public class ChatActivity extends AppCompatActivity{
     private CircleImageView imgUserToolbar;
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
+    private Date date=new Date();
 
     public ChatActivity() {
 
@@ -117,6 +121,7 @@ public class ChatActivity extends AppCompatActivity{
             Map newMessage = new HashMap();
             newMessage.put("createdByUser", currentUserID);
             newMessage.put("text", sendMessageText.trim());
+            newMessage.put("Created at", new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(date));
 
             newMessageDb.setValue(newMessage);
         }
@@ -224,6 +229,7 @@ public class ChatActivity extends AppCompatActivity{
                     String message = null;
                     String createdByUser = null;
                     String imgMessage = null;
+                    String timeStamp=null;
                     if(dataSnapshot.child("text").getValue() != null) {
                         message = dataSnapshot.child("text").getValue().toString();
                     }
@@ -233,6 +239,9 @@ public class ChatActivity extends AppCompatActivity{
                     if(dataSnapshot.child("image").getValue() != null) {
                         imgMessage = dataSnapshot.child("image").getValue().toString();
                     }
+                    if(dataSnapshot.child("Created at").getValue()!=null){
+                        timeStamp=dataSnapshot.child("Created at").getValue().toString();
+                    }
                     if(message != null && createdByUser != null) {
                         boolean currentUserBoolean = false;
                         boolean imgMessageBoolean = false;
@@ -241,7 +250,7 @@ public class ChatActivity extends AppCompatActivity{
                             currentUserBoolean = true;
                             profileUrl = currentUserProfileUrl;
                         }
-                        ChatObject newMessage = new ChatObject(profileUrl, message, imgMessage, currentUserBoolean, imgMessageBoolean);
+                        ChatObject newMessage = new ChatObject(profileUrl, message, imgMessage, currentUserBoolean, imgMessageBoolean,timeStamp);
                         chatObjects.add(newMessage);
                         chatAdapter.notifyDataSetChanged();
 
@@ -254,7 +263,7 @@ public class ChatActivity extends AppCompatActivity{
                             currentUserBoolean = true;
                             profileUrl = currentUserProfileUrl;
                         }
-                        ChatObject newMessage = new ChatObject(profileUrl, message, imgMessage, currentUserBoolean, imgMessageBoolean);
+                        ChatObject newMessage = new ChatObject(profileUrl, message, imgMessage, currentUserBoolean, imgMessageBoolean,timeStamp);
                         chatObjects.add(newMessage);
                         chatAdapter.notifyDataSetChanged();
                     }
