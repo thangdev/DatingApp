@@ -28,6 +28,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -53,6 +56,9 @@ public class tab_profile extends Fragment {
 
     private String _name, _day, _month, _year, _bio, _avatar, _gender;
     private String currentUId;
+
+    private Date date = new Date();
+
     public tab_profile() {
         // Required empty public constructor
     }
@@ -196,6 +202,10 @@ public class tab_profile extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                FirebaseDatabase.getInstance().getReference().child("Users")
+                        .child(mAuth.getCurrentUser().getUid()).child("online")
+                        .setValue(new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(date));
                 mAuth.signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);

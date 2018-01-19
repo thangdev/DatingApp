@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +32,6 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +56,7 @@ public class ChatActivity extends AppCompatActivity{
 
     private TextView txtNameToolbar;
     private CircleImageView imgUserToolbar;
+    private TextView onlineToolbar;
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
     private Date date=new Date();
@@ -73,6 +72,7 @@ public class ChatActivity extends AppCompatActivity{
 
         txtNameToolbar = (TextView) findViewById(R.id.txtNameToolbar);
         imgUserToolbar = (CircleImageView) findViewById(R.id.imgUserToolbar);
+        onlineToolbar = (TextView) findViewById(R.id.onlineToolbar);
 
         btnCamera = (ImageView) findViewById(R.id.btnCamera);
 
@@ -148,7 +148,6 @@ public class ChatActivity extends AppCompatActivity{
         builder.show();
     }
     public void sendCameraIntent() {
-        Log.d("Camera Intent", "Show gallery");
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, SELECT_FILE);
@@ -178,6 +177,7 @@ public class ChatActivity extends AppCompatActivity{
                         Map newMessageImage = new HashMap();
                         newMessageImage.put("createdByUser", currentUserID);
                         newMessageImage.put("image", urlMessageImage);
+                        newMessageImage.put("Created at", new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(date));
 
                         newMessageImageDb.setValue(newMessageImage);
                     }
@@ -318,6 +318,13 @@ public class ChatActivity extends AppCompatActivity{
                     Picasso.with(getApplicationContext()).load(dataSnapshot.child("profileImageUrl").getValue().toString())
                             .into(imgUserToolbar);
                 }
+
+                if(dataSnapshot.child("online").getValue().equals(true)) {
+                    onlineToolbar.setText("Online");
+                } else {
+                    onlineToolbar.setText("Last online: " + dataSnapshot.child("online").getValue().toString());
+                }
+
             }
 
             @Override

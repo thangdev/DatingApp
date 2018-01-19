@@ -1,20 +1,17 @@
 package com.example.nam_t.datingapp;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private FirebaseAuth mAuth;
     private DatabaseReference currentUserDb;
+    private Date date = new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +62,13 @@ public class MainActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         String currentUserId=mAuth.getCurrentUser().getUid();
         currentUserDb= FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-        currentUserDb.child("online").setValue(true);
+
         currentUserDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                currentUserDb.child("online").onDisconnect().setValue(false);
+
+                currentUserDb.child("online").onDisconnect()
+                        .setValue(new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(date));
             }
 
             @Override

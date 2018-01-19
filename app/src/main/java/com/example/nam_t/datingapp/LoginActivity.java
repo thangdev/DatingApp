@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user !=null){
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(mAuth.getCurrentUser().getUid()).child("online").setValue(true);
                     startActivity(intent);
                     finish();
                     return;
@@ -76,9 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "sign in error !!! ", Toast.LENGTH_LONG).show();
                             }
-                            else {
-                                FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid()).child("online").setValue(true);
-                            }
+
 
                         }
                     });
