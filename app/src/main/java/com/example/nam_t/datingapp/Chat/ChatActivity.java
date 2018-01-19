@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity{
 
-    private String currentUserID, currentUserProfileUrl, matchId, profileMatchUrl, chatId;
+    private String currentUserID, currentUserProfileUrl, matchId, profileMatchUrl, chatId,userStatus;
 
     private ImageView btnSend;
     private EditText txtSend;
@@ -73,6 +73,7 @@ public class ChatActivity extends AppCompatActivity{
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getCurrentUserProfileUrl();
+        //userStatus = FirebaseAuth.getInstance().getCurrentUser();
 
         // TODO: INTENT từ của
         matchId = "MZEsqz76TrVBIHUmUcMnX9X0EPv1";

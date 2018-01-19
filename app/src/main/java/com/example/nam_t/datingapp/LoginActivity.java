@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private Button mLogin,mRegister;
@@ -37,6 +39,9 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                     return;
                 }
+                DatabaseReference userStatus = FirebaseDatabase.getInstance().getReference("users/<user_id>/status");
+                userStatus.setValue("online");
+                userStatus.onDisconnect().setValue("offline");
             }
         };
 
@@ -63,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "sign in error !!! ", Toast.LENGTH_LONG).show();
                             }
-
                         }
                     });
                 }
