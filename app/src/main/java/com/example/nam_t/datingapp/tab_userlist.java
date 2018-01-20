@@ -83,7 +83,6 @@ public class tab_userlist extends Fragment {
                 userList.clear();
                 userListAdapter.notifyDataSetChanged();
                 getSuitableUsers();
-                Toast.makeText(getContext(),"Searching...",Toast.LENGTH_SHORT).show();
             }
         });
 

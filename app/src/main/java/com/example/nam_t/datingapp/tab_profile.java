@@ -191,10 +191,10 @@ public class tab_profile extends Fragment {
                         mProgress.dismiss();
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
-                        Toast.makeText(getActivity(), "Update succesfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Update succesfully", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Invalid input data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Invalid input data", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -209,6 +209,7 @@ public class tab_profile extends Fragment {
                 mAuth.signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+                getActivity().finish();
                 return;
             }
         });

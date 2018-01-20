@@ -34,7 +34,6 @@
                 android:hint="Fullname"
                 android:inputType="text"
                 android:maxLines="1"
-
                 android:padding="10dp"
                 android:textColorHint="#ffffff" />
             <View

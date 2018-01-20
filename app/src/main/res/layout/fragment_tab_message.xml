@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nam_t.datingapp.tab_message"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@drawable/new_login_gradients">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

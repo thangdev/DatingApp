@@ -40,10 +40,9 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:textColorHint="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -63,8 +62,7 @@
                 android:maxLines="1"
                 android:padding="8dp"
                 android:textColorHint="#fff"
-                android:textSize="20sp"
-                android:textColor="@android:color/white"/>
+                android:textSize="20sp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
