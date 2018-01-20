@@ -28,8 +28,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -53,6 +53,7 @@ public class tab_profile extends Fragment {
 
     private CircleImageView imgProfile;
     private TextView txtNameProfile, txtDayProfile, txtMonthProfile, txtYearProfile, txtBioProfile;
+    private Button btnGender;
 
     private String _name, _day, _month, _year, _bio, _avatar, _gender;
     private String currentUId;
@@ -78,6 +79,23 @@ public class tab_profile extends Fragment {
         txtMonthProfile = (TextView) rootView.findViewById(R.id.txtMonthProfile);
         txtYearProfile = (TextView) rootView.findViewById(R.id.txtYearProfile);
         txtBioProfile = (TextView) rootView.findViewById(R.id.txtBioProfile);
+
+        btnGender = (Button) rootView.findViewById(R.id.btnGender);
+
+        btnGender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btnGender.getText().toString().equals("Male")) {
+                    btnGender.setText("Female");
+                    Toast.makeText(getActivity(), "Set Female", Toast.LENGTH_SHORT).show();
+                } else {
+                    btnGender.setText("Male");
+                    Toast.makeText(getActivity(), "Set Male", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
         mAuth = FirebaseAuth.getInstance();
 
         currentUId = mAuth.getCurrentUser().getUid();
@@ -99,6 +117,7 @@ public class tab_profile extends Fragment {
                 txtMonthProfile.setText(dataSnapshot.child("DOB_mm").getValue().toString());
                 txtYearProfile.setText(dataSnapshot.child("DOB_yyyy").getValue().toString());
                 txtBioProfile.setText(dataSnapshot.child("bio").getValue().toString());
+                btnGender.setText(dataSnapshot.child("gender").getValue().toString());
 
                 if(! dataSnapshot.child("profileImageUrl").getValue().toString().isEmpty()) {
                     _avatar = dataSnapshot.child("profileImageUrl").getValue().toString();
@@ -170,6 +189,7 @@ public class tab_profile extends Fragment {
                                 mUserDatabase.child("DOB_yyyy").setValue(_year);
                                 mUserDatabase.child("bio").setValue(_bio);
                                 mUserDatabase.child("profileImageUrl").setValue(_avatar);
+                                mUserDatabase.child("gender").setValue(btnGender.getText().toString());
 
                                 mProgress.dismiss();
 
@@ -187,6 +207,7 @@ public class tab_profile extends Fragment {
                         mUserDatabase.child("DOB_mm").setValue(_month);
                         mUserDatabase.child("DOB_yyyy").setValue(_year);
                         mUserDatabase.child("bio").setValue(_bio);
+                        mUserDatabase.child("gender").setValue(btnGender.getText().toString());
 
                         mProgress.dismiss();
                         Intent intent = new Intent(getActivity(), MainActivity.class);

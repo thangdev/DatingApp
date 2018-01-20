@@ -1,8 +1,6 @@
 package com.example.nam_t.datingapp;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,14 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-import java.util.HashMap;
+
 import java.util.Map;
 
 /**
@@ -34,6 +31,8 @@ public class SelectedProfileActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private DatabaseReference usersDb,currentUserDb,userDb;
 
+    private Button btnGender;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +44,9 @@ public class SelectedProfileActivity extends AppCompatActivity{
         user_yy=findViewById(R.id.user_yy);
         user_bio=findViewById(R.id.user_bio);
         btnLike=findViewById(R.id.btn_like);
+
+        btnGender = (Button) findViewById(R.id.btnGender);
+
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();
         currentUId = mAuth.getCurrentUser().getUid();
@@ -161,6 +163,8 @@ public class SelectedProfileActivity extends AppCompatActivity{
                                 break;
                         }
                     }
+                    btnGender.setText(map.get("gender").toString());
+
                 }
             }
 

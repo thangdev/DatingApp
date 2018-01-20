@@ -14,19 +14,25 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <Button
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="#fff"
+                android:id="@+id/btnGender"
+                android:clickable="false"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/khanhdev"
+                android:src="@drawable/ic_person_black_48dp"
                 android:id="@+id/imgUserImg" />
             <TextView
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nguyễn Khánh"
                 android:textSize="21sp"
                 android:layout_marginTop="10dp"
                 android:textColor="#fff"
@@ -54,7 +60,6 @@
                         android:id="@+id/user_dd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/startBlue"/>
@@ -69,7 +74,6 @@
                         android:id="@+id/user_mm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="04"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/startBlue"/>
@@ -84,7 +88,6 @@
                         android:id="@+id/user_yy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1997"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/startBlue"/>
@@ -98,7 +101,6 @@
         android:id="@+id/user_bio"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Tôi là một Web Developer nhưng tôi lại đi dev Android"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="#ffffff"
