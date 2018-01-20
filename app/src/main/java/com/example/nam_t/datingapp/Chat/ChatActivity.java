@@ -11,12 +11,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nam_t.datingapp.R;
+import com.example.nam_t.datingapp.SelectedProfileActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -60,6 +62,7 @@ public class ChatActivity extends AppCompatActivity{
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
     private Date date=new Date();
+    private Toolbar toolbar;
 
     public ChatActivity() {
 
@@ -96,6 +99,7 @@ public class ChatActivity extends AppCompatActivity{
 
         btnSend = (ImageView) findViewById(R.id.btnSend);
         txtSend = (EditText) findViewById(R.id.txtSend);
+        toolbar=findViewById(R.id.toolbar);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +111,17 @@ public class ChatActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 sendCamera();
+            }
+        });
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ChatActivity.this,SelectedProfileActivity.class);
+                Bundle b=new Bundle();
+                b.putString("SelectedID", matchId);
+                intent.putExtras(b);
+                ChatActivity.this.startActivity(intent);
             }
         });
     }

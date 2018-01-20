@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "494286060089-is2beabt3ae1cfur4a2odh46t11uca7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nam_t.datingapp",
+            "certificate_hash": "5993e9f135bc43477da0271d507dab8da2d49366"
+          }
+        },
+        {
+          "client_id": "494286060089-hn3o87rfmeqpn03o6f0chr11t58m4eic.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nam_t.datingapp",
+            "certificate_hash": "e4fdb1181c818f570957b2047c49613ff4971d18"
+          }
+        },
+        {
+          "client_id": "494286060089-0n8s7ol1g1tm7ps0uklaqc34njq6nvrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nam_t.datingapp",
+            "certificate_hash": "bad1100660d707be44687cfb4072d51a38c556d0"
+          }
+        },
+        {
           "client_id": "494286060089-dcm8l1hghqm4ogd43nsddkk3ibpajcn7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
