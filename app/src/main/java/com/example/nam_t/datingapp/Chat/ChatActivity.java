@@ -235,7 +235,6 @@ public class ChatActivity extends AppCompatActivity{
         final ChatAdapter chatAdapter = new ChatAdapter(chatObjects, getApplicationContext());
         recyclerView.setAdapter(chatAdapter);
         layoutManager.setStackFromEnd(true);
-        recyclerView.scrollToPosition(chatObjects.size());
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -283,6 +282,10 @@ public class ChatActivity extends AppCompatActivity{
                         chatAdapter.notifyDataSetChanged();
                     }
 
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                    recyclerView.setHasFixedSize(true);
+
+                    recyclerView.scrollToPosition(chatObjects.size());
                 }
             }
 
